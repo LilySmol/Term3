@@ -3,7 +3,31 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<div style="padding-top: 20px;">
+<div>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <table cellpadding="0" cellspacing="0">
+            <tr height="35">
+                <td>Введите имя пользователя: </td>
+                <td>
+                    @Html.TextBoxFor(m => m.Name)
+                </td>
+            </tr>
+            <tr height="35">
+                <td>Введите токен: </td>
+                <td>
+                    @Html.TextBoxFor(m => m.Token)
+                </td>
+            </tr>           
+            <tr height="35">
+                <td></td>
+                <td><input type="submit" value="Sign in" style="border-radius:5px; color: #000000; background-color: #bdbdbd; width: 172px; height: 30px;" /></td>
+            </tr>
+        </table>
+    }
+</div>
+
+@*<div style="padding-top: 20px;">
     @using (Html.BeginForm("Index", "Home", FormMethod.Post))
     {
         <table cellpadding="0" cellspacing="0">
@@ -71,4 +95,4 @@
 else
 {
     <h1>Список проектов пуст</h1>
-}
+}*@

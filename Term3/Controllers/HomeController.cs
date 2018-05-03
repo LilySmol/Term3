@@ -10,6 +10,7 @@ using System.Reflection;
 using TErm.Helpers.Integration;
 using TErm.Helpers.Clustering;
 using NLog;
+using TErm.Helpers.DataBase;
 
 namespace TErm.Controllers
 {
@@ -21,16 +22,7 @@ namespace TErm.Controllers
 
         public ActionResult Index()
         {
-            int testProjectId = Convert.ToInt32(resource.GetString("testProjectId"));
-            List<ProjectModel> projectList = getProjectsList(resource.GetString("testProjectToken"), resource.GetString("testProjectUser"));
-            InputDataConverter inputDataConverter = new InputDataConverter();
-            var projectSelected = from project in projectList
-                                  where project.id == testProjectId
-                                  select project;
-            ProjectModel projectWithTestData = projectSelected.ToList()[0];
-            clustering = new Clustering(inputDataConverter.convertListToClusterObject(projectWithTestData.issuesList), 9);
-            clustering.initializationClusterCenters();
-            clustering.clustering();
+            createClusters();
 
             return View();
         }
@@ -47,28 +39,27 @@ namespace TErm.Controllers
             return View();
         }
 
-        public ActionResult IssuesTable()
-        { 
-            return View();
-        }
-
         [HttpPost]
         public ActionResult Index(UserModel person)
         {
-            if (person.IdProjectForPrognosis == 0)
+            int userId = 0;
+            string privateToken = person.Token;
+            string name = person.Name;
+            List<ProjectModel> projectList = getProjectsList(privateToken, name);
+            if (projectList != null)
             {
-                string privateToken = person.Token;
-                string name = person.Name;
-                List<ProjectModel> projectList = getProjectsList(privateToken, name);
                 UserModel.Projects = projectList;
-            }
+                userId = DataBaseRequest.getUserId(person.Name, person.Token);
+                if (userId == 0) // пользователя нужно добавить в базу
+                {
+                    userId = addUserData(person);
+                }
+            }  
             else
-            {               
-                int projectId = person.IdProjectForPrognosis;
-                prognosis(person);
-                
-            }
-            return View(person);
+            {
+                return View();
+            }       
+            return RedirectToAction("Projects", "Project", new { userID = userId});
         }
 
         protected List<ProjectModel> getProjectsList(string token, string user)
@@ -94,6 +85,35 @@ namespace TErm.Controllers
                     logger.Info("Задача: " + issue.title + " Oтносится к кластеру: " + clusterCenter.NearestObject.Title);
                 }
             }
+        }
+
+        protected void createClusters()
+        {
+            int testProjectId = Convert.ToInt32(resource.GetString("testProjectId"));
+            List<ProjectModel> projectList = getProjectsList(resource.GetString("testProjectToken"), resource.GetString("testProjectUser"));
+            InputDataConverter inputDataConverter = new InputDataConverter();
+            var projectSelected = from project in projectList
+                                  where project.id == testProjectId
+                                  select project;
+            ProjectModel projectWithTestData = projectSelected.ToList()[0];
+            clustering = new Clustering(inputDataConverter.convertListToClusterObject(projectWithTestData.issuesList), 9);
+            clustering.initializationClusterCenters();
+            clustering.clustering();
+        }
+
+        protected int addUserData(UserModel user)
+        {
+            DataBaseRequest.insertUser(user.Name, user.Token);
+            int userId = DataBaseRequest.getUserId(user.Name, user.Token);
+            foreach (ProjectModel project in UserModel.Projects)
+            {
+                DataBaseRequest.insertProject(project.id, project.description, project.name, userId);
+                foreach (IssuesModel issue in project.issuesList)
+                {
+                    DataBaseRequest.insertIssue(issue.id, issue.iid, issue.title, issue.description, project.id, issue.time_stats.total_time_spent, issue.time_stats.time_estimate);
+                }
+            }
+            return userId;
         }
     }
 }

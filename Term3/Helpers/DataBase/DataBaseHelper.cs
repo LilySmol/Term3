@@ -1,33 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
+using System.Data;
 using System.Linq;
 using System.Web;
+using TErm.Helpers.DataBase;
 using TErm.Models;
 
-namespace TErm.Helpers.DataBase
+namespace Term3.Helpers.DataBase
 {
     public class DataBaseHelper
     {
-        private string connection;
-
         /// <summary>
-        /// Обновляет данные пользователя
+        /// Обновляет проекты и задачи пользователя
         /// </summary>
-        /// <param name="userID">id пользователя</param>
-        public void insertOrUpdateDataForUser(int userID)
+        public void update(UserModel user)
         {
-
+           
         }
-
-        /// <summary>
-        /// Добавляет данные пользователя в базу
-        /// </summary>
-        /// <param name="user"></param>
-        public void insertDataForUser(UserModel user)
-        {
-            SQLiteConnection sqliteCon = new SQLiteConnection(connection);
-        }
-
     }
 }

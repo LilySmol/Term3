@@ -9,7 +9,7 @@ namespace TErm.Models
     {
         public int time_estimate { get; set; }    //в секундах
         public int total_time_spent { get; set; } //в секундах
-        public string human_time_estimate { get; set; }
-        public string human_total_time_spent { get; set; }
+        //public string human_time_estimate { get; set; }
+        //public string human_total_time_spent { get; set; }
     }
 }

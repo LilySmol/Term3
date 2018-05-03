@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace TErm.Models
 {
@@ -12,5 +13,7 @@ namespace TErm.Models
         public string name { get; set; }
         public LinksModel _links { get; set; }
         public List<IssuesModel> issuesList { get; set; }
+
+        public List<SelectListItem> projectsList { get; set; }
     }
 }

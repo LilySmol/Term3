@@ -1,0 +1,27 @@
+﻿@using TErm.Models
+@model ProjectModel
+@{
+    ViewBag.Title = "Projects";
+}
+
+<h2>Projects</h2>
+
+@using (Html.BeginForm("Submit", "Project", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>
+                Проекты:
+            </td>
+            <td>
+                @Html.DropDownListFor(m => m.name, Model.projectsList, "Выбрать проект")
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Открыть" />
+            </td>
+        </tr>
+    </table>
+}

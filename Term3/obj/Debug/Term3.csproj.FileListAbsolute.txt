@@ -100,10 +100,10 @@ D:\VisualStudio\Term3\Term3\bin\ru\Microsoft.Owin.Security.Facebook.resources.dl
 D:\VisualStudio\Term3\Term3\bin\ru\Microsoft.Owin.Security.Google.resources.dll
 D:\VisualStudio\Term3\Term3\bin\ru\Microsoft.Owin.Security.Twitter.resources.dll
 D:\VisualStudio\Term3\Term3\bin\ru\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-D:\VisualStudio\Term3\Term3\obj\Debug\Term3.csprojResolveAssemblyReference.cache
 D:\VisualStudio\Term3\Term3\obj\Debug\Term3.dll
 D:\VisualStudio\Term3\Term3\obj\Debug\Term3.pdb
 D:\VisualStudio\Term3\Term3\bin\NLog.dll
 D:\VisualStudio\Term3\Term3\bin\NLog.xml
 D:\VisualStudio\Term3\Term3\obj\Debug\Term3.Resource.resources
 D:\VisualStudio\Term3\Term3\obj\Debug\Term3.csproj.GenerateResource.Cache
+D:\VisualStudio\Term3\Term3\obj\Debug\Term3.csprojResolveAssemblyReference.cache

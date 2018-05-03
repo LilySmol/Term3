@@ -120,6 +120,9 @@
   <data name="baseUrl" xml:space="preserve">
     <value>https://gitlab.com</value>
   </data>
+  <data name="dbConnectionString" xml:space="preserve">
+    <value>Data Source = D:\VisualStudio\Term3\TermDB;Version = 3</value>
+  </data>
   <data name="testProjectId" xml:space="preserve">
     <value>5831163</value>
   </data>
