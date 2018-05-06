@@ -9,7 +9,7 @@ namespace Term3.Controllers
     public class IssueController : Controller
     {
         // GET: Issue
-        public ActionResult Issues(int projectID)
+        public ActionResult Issues(int userID, string projectTitle)
         {
             return View();
         }

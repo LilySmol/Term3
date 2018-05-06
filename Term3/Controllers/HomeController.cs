@@ -11,19 +11,14 @@ using TErm.Helpers.Integration;
 using TErm.Helpers.Clustering;
 using NLog;
 using TErm.Helpers.DataBase;
+using Term3.Helpers.DataBase;
 
 namespace TErm.Controllers
 {
     public class HomeController : Controller
-    {
-        static Clustering clustering = new Clustering();        
-        static ResourceManager resource = new ResourceManager("TErm3.Resource", Assembly.GetExecutingAssembly());
-        private Logger logger = LogManager.GetCurrentClassLogger();
-
+    {       
         public ActionResult Index()
         {
-            createClusters();
-
             return View();
         }
 
@@ -45,7 +40,7 @@ namespace TErm.Controllers
             int userId = 0;
             string privateToken = person.Token;
             string name = person.Name;
-            List<ProjectModel> projectList = getProjectsList(privateToken, name);
+            List<ProjectModel> projectList = DataBaseHelper.getProjectsList(privateToken, name);
             if (projectList != null)
             {
                 UserModel.Projects = projectList;
@@ -60,46 +55,7 @@ namespace TErm.Controllers
                 return View();
             }       
             return RedirectToAction("Projects", "Project", new { userID = userId});
-        }
-
-        protected List<ProjectModel> getProjectsList(string token, string user)
-        {
-            GitLabParser gitLabParser = new GitLabParser();            
-            gitLabParser.baseUrl = resource.GetString("baseUrl");
-            return gitLabParser.getProjectsListByPrivateToken(token, user);         
-        }
-
-        protected void prognosis(UserModel user)
-        {
-            var project = from p in UserModel.Projects
-                          where p.id == user.IdProjectForPrognosis
-                          select p;
-            ProjectModel projectForPrognosis = project.ToList()[0];
-            InputDataConverter inputDataConverter = new InputDataConverter();
-            foreach (IssuesModel issue in projectForPrognosis.issuesList)
-            {
-                if (issue.time_stats.time_estimate == 0 && issue.time_stats.total_time_spent == 0)
-                {
-                    Cluster clusterCenter = clustering.ClusterList[clustering.getNumberNearestCenter(inputDataConverter.convertToClusterObject(issue))];
-                    issue.time_stats.time_estimate = clusterCenter.NearestObject.SpentTime;
-                    logger.Info("Задача: " + issue.title + " Oтносится к кластеру: " + clusterCenter.NearestObject.Title);
-                }
-            }
-        }
-
-        protected void createClusters()
-        {
-            int testProjectId = Convert.ToInt32(resource.GetString("testProjectId"));
-            List<ProjectModel> projectList = getProjectsList(resource.GetString("testProjectToken"), resource.GetString("testProjectUser"));
-            InputDataConverter inputDataConverter = new InputDataConverter();
-            var projectSelected = from project in projectList
-                                  where project.id == testProjectId
-                                  select project;
-            ProjectModel projectWithTestData = projectSelected.ToList()[0];
-            clustering = new Clustering(inputDataConverter.convertListToClusterObject(projectWithTestData.issuesList), 9);
-            clustering.initializationClusterCenters();
-            clustering.clustering();
-        }
+        }        
 
         protected int addUserData(UserModel user)
         {

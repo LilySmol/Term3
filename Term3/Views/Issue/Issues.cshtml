@@ -1,7 +1,31 @@
-﻿
+﻿@using TErm.Models
+@model IssuesModel
 @{
-    ViewBag.Title = "issue";
+    ViewBag.Title = "issues";
 }
 
-<h2>issue</h2>
+<h2>issues</h2>
 
+<div>
+    @using (Html.BeginForm("Issues", "Issue", FormMethod.Post))
+    {
+        <input type="submit" value="Оценить" />
+    }
+    <table>
+        <tr>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Оценочное время</th>
+            <th>Потраченное время</th>
+        </tr>
+        @foreach (IssuesModel issue in Model.issuesList)
+        {
+            <tr>
+                <td>@issue.title</td>
+                <td>@issue.description</td>
+                <td>@issue.time_stats.time_estimate</td>
+                <td>@issue.time_stats.total_time_spent</td>
+            </tr>
+        }
+    </table>
+</div>

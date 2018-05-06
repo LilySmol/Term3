@@ -4,24 +4,58 @@
     ViewBag.Title = "Projects";
 }
 
-<h2>Projects</h2>
 
-@using (Html.BeginForm("Submit", "Project", FormMethod.Post))
+@if (Model.issuesList == null)
 {
+<div>
+    @using (Html.BeginForm("Projects", "Project", FormMethod.Post))
+    {
+        <table>
+            <tr>
+                <td>
+                    Проекты:
+                </td>
+                <td>
+                    @Html.DropDownListFor(m => m.name, Model.projectsList, "Выбрать проект")
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Открыть" />
+                </td>
+            </tr>
+        </table>
+    }
+    @using (Html.BeginForm("Projects", "Project", FormMethod.Post))
+    {
+        <input type="submit" value="Обновить список проектов" />
+    }
+</div>
+}
+else
+{ 
+<div>  
+    @using (Html.BeginForm("Projects", "Project", FormMethod.Post))
+    {
+        <input type="submit" value="Оценить" />   
+    }
     <table>
         <tr>
-            <td>
-                Проекты:
-            </td>
-            <td>
-                @Html.DropDownListFor(m => m.name, Model.projectsList, "Выбрать проект")
-            </td>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Оценочное время</th>
+            <th>Потраченное время</th>
         </tr>
-        <tr>
-            <td></td>
-            <td>
-                <input type="submit" value="Открыть" />
-            </td>
-        </tr>
-    </table>
+                @foreach (IssuesModel issue in Model.issuesList)
+                {
+                <tr>
+                    <td>@issue.title</td>
+                    <td>@issue.description</td>
+                    <td>@issue.time_stats.time_estimate</td>
+                    <td>@issue.time_stats.total_time_spent</td>
+                </tr>
+                }          
+    </table>    
+</div>
 }

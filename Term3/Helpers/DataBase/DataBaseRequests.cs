@@ -71,10 +71,10 @@ namespace TErm.Helpers.DataBase
         /// <summary>
         /// Добавляет задачу 
         /// </summary>
-        public static void insertIssue(int issueId, int issueNumber, string title, string description, int projectId, int spentTime, int estimateTime)
+        public static void insertIssue(int issueId, int issueNumber, string title, string description, int projectId, double spentTime, double estimateTime)
         {
             SQLiteConnection connection = new SQLiteConnection(connectionString);
-            SQLiteCommand command = new SQLiteCommand("INSERT INTO Issue(issueID, issueNumber, title, decription, projectID, spentTime, estimateTime) VALUES(" + issueId + ", " + issueNumber + ", '" + title + "', '" + description + "', " + projectId + ", " + spentTime + ", " + estimateTime +")", connection);
+            SQLiteCommand command = new SQLiteCommand("INSERT INTO Issue(issueID, issueNumber, title, description, projectID, spentTime, estimateTime) VALUES(" + issueId + ", " + issueNumber + ", '" + title + "', '" + description + "', " + projectId + ", " + spentTime + ", " + estimateTime +")", connection);
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
@@ -124,7 +124,7 @@ namespace TErm.Helpers.DataBase
         {
             DataTable issuesTable = new DataTable();
             SQLiteConnection connection = new SQLiteConnection(connectionString);
-            SQLiteCommand command = new SQLiteCommand("SELECT * FROM Project join Issue on Project.projectID = Issue.projectID WHERE Project.userID = " + userId + " AND Project.name = " + projectName, connection);
+            SQLiteCommand command = new SQLiteCommand("SELECT Issue.title, Issue.description, Issue.spentTime, Issue.estimateTime FROM Project join Issue on Project.projectID = Issue.projectID WHERE Project.userID = " + userId + " AND Project.name = '" + projectName + "'", connection);
             connection.Open();
             SQLiteDataReader reader = command.ExecuteReader();
             issuesTable.Load(reader);

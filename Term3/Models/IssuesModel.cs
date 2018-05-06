@@ -7,15 +7,19 @@ namespace TErm.Models
 {
     public class IssuesModel
     {
-        //public enum stateEnum { opened, closed }
-
         public int id { get; set; }          //общее id задачи
         public int iid { get; set; }         //id задачи
         public string title { get; set; }
         public string description { get; set; }
-        //public stateEnum state { get; set; }         
-        //public DateTime created_at { get; set; } 
-        //public DateTime updated_at { get; set; } 
         public TimeStatsModel time_stats { get; set; }
+
+        public IssuesModel(string title, string description, double spendTime, double estimateTime)
+        {
+            time_stats = new TimeStatsModel();
+            this.title = title;
+            this.description = description;
+            time_stats.total_time_spent = spendTime;
+            time_stats.time_estimate = estimateTime;
+        }
     }
 }
