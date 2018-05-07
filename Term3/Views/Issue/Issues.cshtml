@@ -1,10 +1,14 @@
 ﻿@using TErm.Models
 @model ProjectModel
 
+@{
+    ViewBag.Title = "Задачи";
+}
+
 <div>
     @using (Html.BeginForm("Issues", "Issue", FormMethod.Post))
     {
-        <input type="submit" value="Оценить" />
+        <input type="submit" value="Оценить" style="border-radius:5px; color: #000000; background-color: #bdbdbd; width: 172px; height: 30px;"/>
     }
     <table>
         <tr>

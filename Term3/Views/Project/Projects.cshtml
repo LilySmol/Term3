@@ -1,7 +1,7 @@
 ﻿@using TErm.Models
 @model ProjectModel
 @{
-    ViewBag.Title = "Projects";
+    ViewBag.Title = "Проекты";
 }
 
 @if (Model.issuesList == null)
@@ -21,14 +21,14 @@
             <tr>
                 <td></td>
                 <td>
-                    <input type="submit" value="Открыть" />
+                    <input type="submit" value="Открыть" style="border-radius:5px; color: #000000; background-color: #bdbdbd; width: 172px; height: 30px;"/>
                 </td>
             </tr>
         </table>
     }
     @using (Html.BeginForm("Projects", "Project", FormMethod.Post))
     {
-        <input type="submit" value="Обновить проекты" />
+        <input type="submit" value="Обновить проекты" style="border-radius:5px; color: #000000; background-color: #bdbdbd; width: 172px; height: 30px;"/>
     }
 </div>
 }
@@ -37,7 +37,7 @@ else
 <div>  
     @using (Html.BeginForm("Projects", "Project", FormMethod.Post))
     {
-        <input type="submit" value="Оценить" />   
+        <input type="submit" value="Оценить" style="border-radius:5px; color: #000000; background-color: #bdbdbd; width: 172px; height: 30px;"/>   
     }
     <table>
         <tr>

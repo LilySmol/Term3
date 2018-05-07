@@ -1,4 +1,12 @@
-﻿body {
+﻿style {
+    border-radius:5px; 
+    color: #000000; 
+    background-color: #bdbdbd; 
+    width: 172px; 
+    height: 30px;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
