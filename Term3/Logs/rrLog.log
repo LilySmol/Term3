@@ -589,3 +589,176 @@
    в System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
    в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2018/05/07 20:35:04.981: System.Web.HttpCompileException (0x80004005): D:\VisualStudio\Term3\Term3\Views\Issue\Issues.cshtml(21): error CS1061: 'IssuesModel' does not contain a definition for 'issuesList' and no extension method 'issuesList' accepting a first argument of type 'IssuesModel' could be found (are you missing a using directive or an assembly reference?)
+   в System.Web.Compilation.AssemblyBuilder.Compile()
+   в System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   в System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   в System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   в System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   в System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   в System.Web.Compilation.BuildManager.GetCompiledType(VirtualPath virtualPath)
+   в System.Web.Compilation.BuildManager.GetCompiledType(String virtualPath)
+   в System.Web.Mvc.BuildManagerWrapper.System.Web.Mvc.IBuildManager.GetCompiledType(String virtualPath)
+   в System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   в System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2018/05/07 20:51:26.803: System.Reflection.AmbiguousMatchException: Текущий запрос для действия "Issues" на контроллере типа "IssueController" является неоднозначным на следующих методах действий:
+System.Web.Mvc.ActionResult Issues(Int32, System.String) на типе Term3.Controllers.IssueController
+System.Web.Mvc.ActionResult Issues(TErm.Models.ProjectModel) на типе Term3.Controllers.IssueController
+   в System.Web.Mvc.ActionMethodSelectorBase.FindActionMethod(ControllerContext controllerContext, String actionName)
+   в System.Web.Mvc.Async.ReflectedAsyncControllerDescriptor.FindAction(ControllerContext controllerContext, String actionName)
+   в System.Web.Mvc.ControllerActionInvoker.FindAction(ControllerContext controllerContext, ControllerDescriptor controllerDescriptor, String actionName)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAction(ControllerContext controllerContext, String actionName, AsyncCallback callback, Object state)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1c(AsyncCallback asyncCallback, Object asyncState, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   в System.Web.Mvc.Controller.BeginExecuteCore(AsyncCallback callback, Object state)
+   в System.Web.Mvc.Controller.<BeginExecute>b__14(AsyncCallback asyncCallback, Object callbackState, Controller controller)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   в System.Web.Mvc.Controller.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   в System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(AsyncCallback asyncCallback, Object asyncState, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   в System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   в System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   в System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2018/05/07 21:06:13.457: Задача: Авторизация по логину и паролю Oтносится к кластеру: Авторизация по email
+2018/05/07 21:06:13.477: Задача: Авторизация по токену Oтносится к кластеру: Авторизация по email
+2018/05/07 21:06:13.477: Задача: Авторизация по номеру телефона Oтносится к кластеру: Авторизация по email
+2018/05/07 21:06:13.477: Задача: Добавление в БД пользователя Oтносится к кластеру: Добавление в БД пользователя
+2018/05/07 21:06:13.477: Задача: Добавление в БД покупок Oтносится к кластеру: Добавление в БД пользователя
+2018/05/07 21:06:13.477: Задача: Авторизация по email Oтносится к кластеру: Авторизация по email
+2018/05/07 21:06:13.477: Задача: Фильтр по покупкам Oтносится к кластеру: Фильтр по покупкам
+2018/05/07 21:06:13.477: Задача: Добавление пользователя Oтносится к кластеру: Добавление в БД пользователя
+2018/05/07 21:06:13.477: Задача: Добавление администратора Oтносится к кластеру: Добавление в БД пользователя
+2018/05/07 21:06:13.477: Задача: Добавление модератора Oтносится к кластеру: Добавление в БД пользователя
+2018/05/07 21:06:13.477: Задача: Удаление пользователя Oтносится к кластеру: Авторизация по email
+2018/05/07 21:06:13.477: Задача: Редактировать роль пользователя Oтносится к кластеру: Авторизация по email
+2018/05/07 21:06:13.477: Задача: Анализ данных о занятости пользователя Oтносится к кластеру: Добавление в БД пользователя
+2018/05/07 21:06:13.477: Задача: Редактировать пользователя Oтносится к кластеру: Авторизация по email
+2018/05/07 21:06:13.477: Задача: Редактирование списка покупок Oтносится к кластеру: Фильтр по покупкам
+2018/05/07 21:06:13.477: Задача: Анализ данный о покупках Oтносится к кластеру: Авторизация по email
+2018/05/07 21:06:13.477: Задача: Статистика по покупкам Oтносится к кластеру: Статистика по покупкам
+2018/05/07 21:06:13.477: Задача: Добавление роли администратором Oтносится к кластеру: Добавление в БД пользователя
+2018/05/07 21:06:13.477: Задача: Добавить магазин на карту Oтносится к кластеру: Фильтр по покупкам
+2018/05/07 21:06:13.477: Задача: Сформировать путь Oтносится к кластеру: Авторизация по email
+2018/05/07 21:06:13.477: Задача: Сформировать отчет по покупкам Oтносится к кластеру: Сформировать отчет по покупкам
+2018/05/07 21:06:13.477: Задача: Сформировать отчет по затратам Oтносится к кластеру: Сформировать отчет по покупкам
+2018/05/07 21:06:13.477: Задача: Вывести магазины Oтносится к кластеру: Статистика по покупкам
+2018/05/07 21:06:13.477: Задача: Вывести список покупок за неделю Oтносится к кластеру: Статистика по покупкам
+2018/05/07 21:06:13.477: Задача: Вывести список покупок за месяц Oтносится к кластеру: Вывести список покупок за месяц
+2018/05/07 21:06:13.477: Задача: Вывести список пользователей системы Oтносится к кластеру: Вывести список покупок за месяц
+2018/05/07 21:06:13.477: Задача: Вывести информацию о пользователе Oтносится к кластеру: Вывести список покупок за месяц
+2018/05/07 21:06:13.477: Задача: Фильтр по пользователям Oтносится к кластеру: Фильтр по покупкам
+2018/05/07 21:06:13.477: Задача: Левое меню Oтносится к кластеру: Фильтр по покупкам
+2018/05/07 21:06:13.477: Задача: Добавить настройки системы Oтносится к кластеру: Фильтр по покупкам
+2018/05/07 21:06:13.477: Задача: Настройка темы приложения Oтносится к кластеру: Фильтр по покупкам
+2018/05/07 21:06:13.477: Задача: Смена пароля Oтносится к кластеру: Статистика по покупкам
+2018/05/07 21:06:13.477: Задача: Регистрация пользователя Oтносится к кластеру: Статистика по покупкам
+2018/05/07 21:06:13.477: Задача: считать qr код Oтносится к кластеру: Авторизация по email
+2018/05/07 21:06:13.477: Задача: Считать данные о акциях магазина Oтносится к кластеру: уведомление об акциях
+2018/05/07 21:06:13.477: Задача: Выбрать магазины для отслеживания акций Oтносится к кластеру: Статистика по покупкам
+2018/05/07 21:06:13.477: Задача: Удалить магазин из списка отслеживания акций Oтносится к кластеру: Фильтр по покупкам
+2018/05/07 21:06:13.477: Задача: функция для формирования шаблонного списка покупок Oтносится к кластеру: функция для формирования шаблонного списка покупок
+2018/05/07 21:06:13.477: Задача: настройка доступа к списку покупок Oтносится к кластеру: функция для формирования шаблонного списка покупок
+2018/05/07 21:06:13.477: Задача: поделиться списком покупок Oтносится к кластеру: функция для формирования шаблонного списка покупок
+2018/05/07 21:06:13.477: Задача: уведомление об акциях Oтносится к кластеру: уведомление об акциях
+2018/05/07 21:06:13.477: Задача: уведомление об акциях по смс Oтносится к кластеру: уведомление об акциях
+2018/05/07 21:06:13.477: Задача: отправить сообщение пользователю Oтносится к кластеру: функция для формирования шаблонного списка покупок
+2018/05/07 21:06:13.477: Задача: отправить акцию пользователю Oтносится к кластеру: уведомление об акциях
+2018/05/07 21:06:13.489: Задача: список предложенных покупок Oтносится к кластеру: Статистика по покупкам
+2018/05/07 21:06:13.489: Задача: список последних покупок Oтносится к кластеру: Статистика по покупкам
+2018/05/07 21:06:13.489: Задача: сохранить список покупок в текстовом формате Oтносится к кластеру: сохранить список покупок в текстовом формате
+2018/05/07 21:06:13.489: Задача: сохранить список избранных магазинов Oтносится к кластеру: сохранить список покупок в текстовом формате
+2018/05/07 21:06:13.489: Задача: сохранить отчет о затратах за месяц Oтносится к кластеру: сохранить список покупок в текстовом формате
+2018/05/07 21:06:13.489: Задача: сохранить отчет о затратах за неделю Oтносится к кластеру: сохранить список покупок в текстовом формате
+2018/05/07 23:22:33.914: Задача: Авторизация по логину и паролю Oтносится к кластеру: Авторизация по email
+2018/05/07 23:22:33.979: Задача: Авторизация по токену Oтносится к кластеру: Авторизация по email
+2018/05/07 23:22:33.979: Задача: Авторизация по номеру телефона Oтносится к кластеру: Авторизация по email
+2018/05/07 23:22:33.979: Задача: Добавление в БД пользователя Oтносится к кластеру: Добавление в БД пользователя
+2018/05/07 23:22:33.979: Задача: Добавление в БД покупок Oтносится к кластеру: Добавление в БД пользователя
+2018/05/07 23:22:33.979: Задача: Авторизация по email Oтносится к кластеру: Авторизация по email
+2018/05/07 23:22:33.979: Задача: Фильтр по покупкам Oтносится к кластеру: Фильтр по покупкам
+2018/05/07 23:22:33.979: Задача: Добавление пользователя Oтносится к кластеру: Добавление в БД пользователя
+2018/05/07 23:22:33.979: Задача: Добавление администратора Oтносится к кластеру: Добавление в БД пользователя
+2018/05/07 23:22:33.979: Задача: Добавление модератора Oтносится к кластеру: Добавление в БД пользователя
+2018/05/07 23:22:33.979: Задача: Удаление пользователя Oтносится к кластеру: Авторизация по email
+2018/05/07 23:22:33.979: Задача: Редактировать роль пользователя Oтносится к кластеру: Авторизация по email
+2018/05/07 23:22:33.979: Задача: Анализ данных о занятости пользователя Oтносится к кластеру: Добавление в БД пользователя
+2018/05/07 23:22:33.979: Задача: Редактировать пользователя Oтносится к кластеру: Авторизация по email
+2018/05/07 23:22:33.979: Задача: Редактирование списка покупок Oтносится к кластеру: Фильтр по покупкам
+2018/05/07 23:22:33.979: Задача: Анализ данный о покупках Oтносится к кластеру: Авторизация по email
+2018/05/07 23:22:33.979: Задача: Статистика по покупкам Oтносится к кластеру: Статистика по покупкам
+2018/05/07 23:22:33.979: Задача: Добавление роли администратором Oтносится к кластеру: Добавление в БД пользователя
+2018/05/07 23:22:33.979: Задача: Добавить магазин на карту Oтносится к кластеру: Фильтр по покупкам
+2018/05/07 23:22:33.979: Задача: Сформировать путь Oтносится к кластеру: Авторизация по email
+2018/05/07 23:22:33.979: Задача: Сформировать отчет по покупкам Oтносится к кластеру: Сформировать отчет по покупкам
+2018/05/07 23:22:33.979: Задача: Сформировать отчет по затратам Oтносится к кластеру: Сформировать отчет по покупкам
+2018/05/07 23:22:33.979: Задача: Вывести магазины Oтносится к кластеру: Статистика по покупкам
+2018/05/07 23:22:33.979: Задача: Вывести список покупок за неделю Oтносится к кластеру: Статистика по покупкам
+2018/05/07 23:22:33.979: Задача: Вывести список покупок за месяц Oтносится к кластеру: Вывести список покупок за месяц
+2018/05/07 23:22:33.979: Задача: Вывести список пользователей системы Oтносится к кластеру: Вывести список покупок за месяц
+2018/05/07 23:22:33.979: Задача: Вывести информацию о пользователе Oтносится к кластеру: Вывести список покупок за месяц
+2018/05/07 23:22:33.979: Задача: Фильтр по пользователям Oтносится к кластеру: Фильтр по покупкам
+2018/05/07 23:22:33.979: Задача: Левое меню Oтносится к кластеру: Фильтр по покупкам
+2018/05/07 23:22:33.979: Задача: Добавить настройки системы Oтносится к кластеру: Фильтр по покупкам
+2018/05/07 23:22:33.979: Задача: Настройка темы приложения Oтносится к кластеру: Фильтр по покупкам
+2018/05/07 23:22:33.979: Задача: Смена пароля Oтносится к кластеру: Статистика по покупкам
+2018/05/07 23:22:33.979: Задача: Регистрация пользователя Oтносится к кластеру: Статистика по покупкам
+2018/05/07 23:22:33.979: Задача: считать qr код Oтносится к кластеру: Авторизация по email
+2018/05/07 23:22:33.979: Задача: Считать данные о акциях магазина Oтносится к кластеру: уведомление об акциях
+2018/05/07 23:22:33.979: Задача: Выбрать магазины для отслеживания акций Oтносится к кластеру: Статистика по покупкам
+2018/05/07 23:22:33.979: Задача: Удалить магазин из списка отслеживания акций Oтносится к кластеру: Фильтр по покупкам
+2018/05/07 23:22:33.979: Задача: функция для формирования шаблонного списка покупок Oтносится к кластеру: функция для формирования шаблонного списка покупок
+2018/05/07 23:22:33.979: Задача: настройка доступа к списку покупок Oтносится к кластеру: функция для формирования шаблонного списка покупок
+2018/05/07 23:22:33.979: Задача: поделиться списком покупок Oтносится к кластеру: функция для формирования шаблонного списка покупок
+2018/05/07 23:22:33.979: Задача: уведомление об акциях Oтносится к кластеру: уведомление об акциях
+2018/05/07 23:22:33.988: Задача: уведомление об акциях по смс Oтносится к кластеру: уведомление об акциях
+2018/05/07 23:22:33.988: Задача: отправить сообщение пользователю Oтносится к кластеру: функция для формирования шаблонного списка покупок
+2018/05/07 23:22:33.988: Задача: отправить акцию пользователю Oтносится к кластеру: уведомление об акциях
+2018/05/07 23:22:33.988: Задача: список предложенных покупок Oтносится к кластеру: Статистика по покупкам
+2018/05/07 23:22:33.988: Задача: список последних покупок Oтносится к кластеру: Статистика по покупкам
+2018/05/07 23:22:33.988: Задача: сохранить список покупок в текстовом формате Oтносится к кластеру: сохранить список покупок в текстовом формате
+2018/05/07 23:22:33.988: Задача: сохранить список избранных магазинов Oтносится к кластеру: сохранить список покупок в текстовом формате
+2018/05/07 23:22:33.988: Задача: сохранить отчет о затратах за месяц Oтносится к кластеру: сохранить список покупок в текстовом формате
+2018/05/07 23:22:33.988: Задача: сохранить отчет о затратах за неделю Oтносится к кластеру: сохранить список покупок в текстовом формате
+2018/05/07 23:39:06.732: Задача: создание базы данных Oтносится к кластеру: Статистика по покупкам
+2018/05/07 23:39:06.753: Задача: расчет времени Oтносится к кластеру: Сформировать отчет по покупкам
+2018/05/07 23:39:06.753: Задача: авторизация пользователя Oтносится к кластеру: Статистика по покупкам
+2018/05/07 23:46:25.968: Задача: авторизация Oтносится к кластеру: Авторизация по email
+2018/05/07 23:46:25.988: Задача: подсчет стоимости Oтносится к кластеру: Статистика по покупкам
+2018/05/07 23:46:25.988: Задача: вычет Oтносится к кластеру: Статистика по покупкам
+2018/05/07 23:49:29.824: Задача: авторизация Oтносится к кластеру: Авторизация по email
+2018/05/07 23:49:29.851: Задача: подсчет стоимости Oтносится к кластеру: Статистика по покупкам
+2018/05/07 23:49:29.851: Задача: вычет Oтносится к кластеру: Статистика по покупкам
+2018/05/07 23:52:38.628: Задача: авторизация Oтносится к кластеру: Авторизация по email
+2018/05/07 23:52:38.628: Задача: подсчет стоимости Oтносится к кластеру: Статистика по покупкам
+2018/05/07 23:52:38.628: Задача: вычет Oтносится к кластеру: Статистика по покупкам

@@ -13,8 +13,9 @@ namespace TErm.Models
         public string description { get; set; }
         public TimeStatsModel time_stats { get; set; }
 
-        public IssuesModel(string title, string description, double spendTime, double estimateTime)
+        public IssuesModel(int id, string title, string description, double spendTime, double estimateTime)
         {
+            this.id = id;
             time_stats = new TimeStatsModel();
             this.title = title;
             this.description = description;

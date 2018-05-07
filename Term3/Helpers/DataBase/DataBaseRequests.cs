@@ -19,7 +19,7 @@ namespace TErm.Helpers.DataBase
         /// <summary>
         /// Удалить проект
         /// </summary>
-        public void deleteProject(int projectId)
+        public static void deleteProject(int projectId)
         {
             SQLiteConnection connection = new SQLiteConnection(connectionString);
             SQLiteCommand command = new SQLiteCommand("DELETE FROM Project WHERE projectID = " + projectId, connection);
@@ -32,7 +32,7 @@ namespace TErm.Helpers.DataBase
         /// <summary>
         /// Удалить задачу
         /// </summary>
-        public void deleteIssue(int issueId)
+        public static void deleteIssue(int issueId)
         {
             SQLiteConnection connection = new SQLiteConnection(connectionString);
             SQLiteCommand command = new SQLiteCommand("DELETE FROM Issue WHERE issueID = " + issueId, connection);
@@ -102,6 +102,22 @@ namespace TErm.Helpers.DataBase
         }
 
         /// <summary>
+        /// Получить пользователя по id
+        /// </summary>
+        public static DataTable getUser(int userId)
+        {
+            DataTable userTable = new DataTable();
+            SQLiteConnection connection = new SQLiteConnection(connectionString);
+            SQLiteCommand command = new SQLiteCommand("SELECT * FROM User WHERE userID = " + userId, connection);
+            connection.Open();
+            SQLiteDataReader reader = command.ExecuteReader();
+            userTable.Load(reader);
+            connection.Close();
+            connection.Dispose();
+            return userTable;
+        }
+
+        /// <summary>
         /// Получить таблицу с проектами пользователя
         /// </summary>
         public static DataTable getProjects(int userId)
@@ -124,13 +140,26 @@ namespace TErm.Helpers.DataBase
         {
             DataTable issuesTable = new DataTable();
             SQLiteConnection connection = new SQLiteConnection(connectionString);
-            SQLiteCommand command = new SQLiteCommand("SELECT Issue.title, Issue.description, Issue.spentTime, Issue.estimateTime FROM Project join Issue on Project.projectID = Issue.projectID WHERE Project.userID = " + userId + " AND Project.name = '" + projectName + "'", connection);
+            SQLiteCommand command = new SQLiteCommand("SELECT Issue.title, Issue.description, Issue.spentTime, Issue.estimateTime, Issue.issueID FROM Project join Issue on Project.projectID = Issue.projectID WHERE Project.userID = " + userId + " AND Project.name = '" + projectName + "'", connection);
             connection.Open();
             SQLiteDataReader reader = command.ExecuteReader();
             issuesTable.Load(reader);
             connection.Close();
             connection.Dispose();
             return issuesTable;
+        }
+
+        /// <summary>
+        /// Обновить оценочное время задачи
+        /// </summary>
+        public static void updateEstimateTime(int issueID, double estimateTime)
+        {
+            SQLiteConnection connection = new SQLiteConnection(connectionString);
+            SQLiteCommand command = new SQLiteCommand("UPDATE Issue SET estimateTime = " + estimateTime + " WHERE issueID = " + issueID, connection);
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+            connection.Dispose();
         }
     }
 }

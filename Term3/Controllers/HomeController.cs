@@ -47,7 +47,7 @@ namespace TErm.Controllers
                 userId = DataBaseRequest.getUserId(person.Name, person.Token);
                 if (userId == 0) // пользователя нужно добавить в базу
                 {
-                    userId = addUserData(person);
+                    userId = DataBaseHelper.addUserData(person);
                 }
             }  
             else
@@ -55,21 +55,6 @@ namespace TErm.Controllers
                 return View();
             }       
             return RedirectToAction("Projects", "Project", new { userID = userId});
-        }        
-
-        protected int addUserData(UserModel user)
-        {
-            DataBaseRequest.insertUser(user.Name, user.Token);
-            int userId = DataBaseRequest.getUserId(user.Name, user.Token);
-            foreach (ProjectModel project in UserModel.Projects)
-            {
-                DataBaseRequest.insertProject(project.id, project.description, project.name, userId);
-                foreach (IssuesModel issue in project.issuesList)
-                {
-                    DataBaseRequest.insertIssue(issue.id, issue.iid, issue.title, issue.description, project.id, issue.time_stats.total_time_spent, issue.time_stats.time_estimate);
-                }
-            }
-            return userId;
-        }
+        }   
     }
 }

@@ -4,7 +4,6 @@
     ViewBag.Title = "Projects";
 }
 
-
 @if (Model.issuesList == null)
 {
 <div>
@@ -29,7 +28,7 @@
     }
     @using (Html.BeginForm("Projects", "Project", FormMethod.Post))
     {
-        <input type="submit" value="Обновить список проектов" />
+        <input type="submit" value="Обновить проекты" />
     }
 </div>
 }

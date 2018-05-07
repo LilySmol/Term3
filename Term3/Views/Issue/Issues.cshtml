@@ -1,10 +1,5 @@
 ﻿@using TErm.Models
-@model IssuesModel
-@{
-    ViewBag.Title = "issues";
-}
-
-<h2>issues</h2>
+@model ProjectModel
 
 <div>
     @using (Html.BeginForm("Issues", "Issue", FormMethod.Post))
