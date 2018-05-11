@@ -161,5 +161,47 @@ namespace TErm.Helpers.DataBase
             connection.Close();
             connection.Dispose();
         }
+
+        /// <summary>
+        /// Обновить время проекта
+        /// </summary>
+        public static void updateProjectTime(string projectName, double projectTime, int userId)
+        {
+            SQLiteConnection connection = new SQLiteConnection(connectionString);
+            SQLiteCommand command = new SQLiteCommand("UPDATE Project SET projectTime = " + projectTime + " WHERE name = '" + projectName + "' AND userID = " + userId, connection);
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+            connection.Dispose();
+        }
+
+        /// <summary>
+        /// Получить время проекта
+        /// </summary>
+        public static double getProjectTime(string projectName, int userId)
+        {
+            double projectTime = 0;
+            DataTable userTable = new DataTable();
+            SQLiteConnection connection = new SQLiteConnection(connectionString);
+            SQLiteCommand command = new SQLiteCommand("SELECT projectTime FROM Project WHERE name = '" + projectName + "' AND userID = " + userId, connection);
+            connection.Open();
+            SQLiteDataReader reader = command.ExecuteReader();
+            userTable.Load(reader);
+            connection.Close();
+            connection.Dispose();
+            if (userTable.Rows.Count == 0)
+            {
+                return 0;
+            }
+            try
+            {
+                projectTime = Convert.ToDouble(userTable.Rows[0][0]);
+                return Convert.ToDouble(userTable.Rows[0][0]);
+            }
+            catch
+            {
+                return 0;
+            }           
+        }
     }
 }

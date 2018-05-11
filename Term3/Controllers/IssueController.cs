@@ -37,6 +37,7 @@ namespace Term3.Controllers
                 estimateTime = Convert.ToDouble(row["estimateTime"]) / 3600;
                 project.issuesList.Add(new IssuesModel(Convert.ToInt32(row["issueID"]), row["title"].ToString(), row["description"].ToString(), spentTime, estimateTime));
             }
+            project.projectTime = DataBaseRequest.getProjectTime(project.name, userId);
             return View(project);
         }
 
@@ -50,6 +51,7 @@ namespace Term3.Controllers
                 double estimateTime = issue.time_stats.time_estimate * 3600;
                 DataBaseRequest.updateEstimateTime(issue.id, estimateTime);
             }
+            DataBaseRequest.updateProjectTime(project.name, project.projectTime, userId);
             return View(project);
         }
 
@@ -62,8 +64,9 @@ namespace Term3.Controllers
                 {
                     Cluster clusterCenter = clustering.ClusterList[clustering.getNumberNearestCenter(inputDataConverter.convertToClusterObject(issue))];
                     issue.time_stats.time_estimate = clusterCenter.NearestObject.SpentTime / 3600;
+                    project.projectTime += issue.time_stats.time_estimate;
                     logger.Info("Задача: " + issue.title + " Oтносится к кластеру: " + clusterCenter.NearestObject.Title);
-                }
+                }                
             }
         }
 
