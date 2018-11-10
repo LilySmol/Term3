@@ -123,11 +123,23 @@
   <data name="dbConnectionString" xml:space="preserve">
     <value>Data Source = D:\VisualStudio\Term3\TermDB;Version = 3</value>
   </data>
+  <data name="dbInsertToken" xml:space="preserve">
+    <value>token</value>
+  </data>
+  <data name="dbInsertUser" xml:space="preserve">
+    <value>Lily</value>
+  </data>
+  <data name="dbProjectId" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="dbUserId" xml:space="preserve">
+    <value>8</value>
+  </data>
   <data name="testProjectId" xml:space="preserve">
     <value>5831163</value>
   </data>
   <data name="testProjectToken" xml:space="preserve">
-    <value>GG8RjMH3TyguYqP6FBxu</value>
+    <value>uM7eAtgdabvgN7avNxyu</value>
   </data>
   <data name="testProjectUser" xml:space="preserve">
     <value>LilySmol</value>

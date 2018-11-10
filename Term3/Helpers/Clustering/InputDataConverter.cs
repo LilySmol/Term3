@@ -72,7 +72,5 @@ namespace TErm.Helpers.Clustering
             }
             return dictionary.Distinct().ToList();
         }
-
-
     }
 }

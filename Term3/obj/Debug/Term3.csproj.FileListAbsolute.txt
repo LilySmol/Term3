@@ -1,3 +1,9 @@
+D:\VisualStudio\Term3\Term3\bin\System.Web.Mvc.dll
+D:\VisualStudio\Term3\Term3\bin\NUnit3.TestAdapter.dll
+D:\VisualStudio\Term3\Term3\bin\NUnit3.TestAdapter.pdb
+D:\VisualStudio\Term3\Term3\bin\nunit.engine.dll
+D:\VisualStudio\Term3\Term3\bin\nunit.engine.api.dll
+D:\VisualStudio\Term3\Term3\bin\Mono.Cecil.dll
 D:\VisualStudio\Term3\Term3\bin\ApplicationInsights.config
 D:\VisualStudio\Term3\Term3\bin\roslyn\csc.exe
 D:\VisualStudio\Term3\Term3\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -39,12 +45,13 @@ D:\VisualStudio\Term3\Term3\bin\Microsoft.Owin.Security.OAuth.dll
 D:\VisualStudio\Term3\Term3\bin\Microsoft.Owin.Security.Twitter.dll
 D:\VisualStudio\Term3\Term3\bin\Microsoft.Web.Infrastructure.dll
 D:\VisualStudio\Term3\Term3\bin\Newtonsoft.Json.dll
+D:\VisualStudio\Term3\Term3\bin\NLog.dll
+D:\VisualStudio\Term3\Term3\bin\nunit.framework.dll
 D:\VisualStudio\Term3\Term3\bin\Owin.dll
 D:\VisualStudio\Term3\Term3\bin\System.Data.SQLite.dll
 D:\VisualStudio\Term3\Term3\bin\System.Data.SQLite.EF6.dll
 D:\VisualStudio\Term3\Term3\bin\System.Data.SQLite.Linq.dll
 D:\VisualStudio\Term3\Term3\bin\System.Web.Helpers.dll
-D:\VisualStudio\Term3\Term3\bin\System.Web.Mvc.dll
 D:\VisualStudio\Term3\Term3\bin\System.Web.Optimization.dll
 D:\VisualStudio\Term3\Term3\bin\System.Web.Razor.dll
 D:\VisualStudio\Term3\Term3\bin\System.Web.WebPages.Deployment.dll
@@ -57,6 +64,9 @@ D:\VisualStudio\Term3\Term3\bin\Microsoft.AI.Web.xml
 D:\VisualStudio\Term3\Term3\bin\Microsoft.AI.WindowsServer.xml
 D:\VisualStudio\Term3\Term3\bin\Microsoft.ApplicationInsights.xml
 D:\VisualStudio\Term3\Term3\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\VisualStudio\Term3\Term3\bin\NLog.xml
+D:\VisualStudio\Term3\Term3\bin\nunit.framework.pdb
+D:\VisualStudio\Term3\Term3\bin\nunit.framework.xml
 D:\VisualStudio\Term3\Term3\bin\System.Data.SQLite.xml
 D:\VisualStudio\Term3\Term3\bin\System.Web.Helpers.xml
 D:\VisualStudio\Term3\Term3\bin\System.Web.Mvc.xml
@@ -100,10 +110,8 @@ D:\VisualStudio\Term3\Term3\bin\ru\Microsoft.Owin.Security.Facebook.resources.dl
 D:\VisualStudio\Term3\Term3\bin\ru\Microsoft.Owin.Security.Google.resources.dll
 D:\VisualStudio\Term3\Term3\bin\ru\Microsoft.Owin.Security.Twitter.resources.dll
 D:\VisualStudio\Term3\Term3\bin\ru\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-D:\VisualStudio\Term3\Term3\obj\Debug\Term3.dll
-D:\VisualStudio\Term3\Term3\obj\Debug\Term3.pdb
-D:\VisualStudio\Term3\Term3\bin\NLog.dll
-D:\VisualStudio\Term3\Term3\bin\NLog.xml
 D:\VisualStudio\Term3\Term3\obj\Debug\Term3.Resource.resources
 D:\VisualStudio\Term3\Term3\obj\Debug\Term3.csproj.GenerateResource.Cache
+D:\VisualStudio\Term3\Term3\obj\Debug\Term3.dll
+D:\VisualStudio\Term3\Term3\obj\Debug\Term3.pdb
 D:\VisualStudio\Term3\Term3\obj\Debug\Term3.csprojResolveAssemblyReference.cache

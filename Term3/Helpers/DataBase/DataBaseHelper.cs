@@ -44,6 +44,9 @@ namespace Term3.Helpers.DataBase
             return gitLabParser.getProjectsListByPrivateToken(token, user);
         }
 
+        /// <summary>
+        /// Добавляет пользователя в базу дынных
+        /// </summary>
         public static int addUserData(UserModel user)
         {
             DataBaseRequest.insertUser(user.Name, user.Token);

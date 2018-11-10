@@ -1,0 +1,147 @@
+﻿@using TErm.Models
+@model List<ClasteringListModel>
+@{
+    ViewBag.Title = "ClasterView";
+}
+
+<div class="container">
+    <div class="row">
+    @{int i = 1; }
+    @foreach (var claster in Model)
+    {        
+        string type = "cluster block" + i;
+        <div class="col-sm-3 block-name">
+            <div>@claster.clasterName</div>
+            <div>Часы: @claster.clasterHours</div>
+        </div>
+        <div class="col-sm-9">
+            <div class="@type">
+              @foreach (var task in claster.taskList)
+              {
+                <div class="task">
+                    <div class="point"></div>
+                    <div class="task-text">@task</div>
+                </div>
+              }
+            </div>
+        </div>
+        i = i + 1;
+    }
+    </div>
+</div>
+
+<style type="text/css">
+
+    .block1 {
+        border-left-color: red;
+    }
+
+    .block2 {
+        border-left-color: green;
+    }
+
+    .block3 {
+        border-left-color: blue;
+    }
+
+    .block4 {
+        border-left-color: orange;
+    }
+
+    .block5 {
+        border-left-color: purple;
+    }
+
+    .block6 {
+        border-left-color: aquamarine;
+    }
+
+    .block7 {
+        border-left-color: black;
+    }
+
+    .block8 {
+        border-left-color: rgba(147, 217, 9, 0.93);
+    }
+
+    .block9 {
+        border-left-color: #00cfa6;
+    }
+
+    .cluster {
+        border-left-width: 2px;
+        border-left-style: solid;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .block-name {
+        text-align: right;
+        height: 100%;
+        padding-top: 50px;
+    }
+
+    .point {
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        margin-left: -6px;
+        display: inline-block;
+    }
+
+    .task {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .task:last-child {
+        margin-bottom: 0;
+    }
+
+    .task-text {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-left: 10px;
+        width: 90%;
+    }
+
+    .block1 .point {
+        background-color: red;
+    }
+
+    .block2 .point {
+        background-color: green;
+    }
+
+    .block3 .point {
+        background-color: blue;
+    }
+
+    .block4 .point {
+        background-color: orange;
+    }
+
+    .block5 .point {
+        background-color: purple;
+    }
+
+    .block6 .point {
+        background-color: aquamarine;
+    }
+
+    .block7 .point {
+        background-color: black;
+    }
+
+    .block8 .point {
+        background-color: rgba(147, 217, 9, 0.93);
+    }
+
+    .block9 .point {
+        background-color: #00cfa6;
+    }
+</style>
+
+

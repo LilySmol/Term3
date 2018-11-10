@@ -11,12 +11,13 @@ using TErm.Helpers.Clustering;
 using TErm.Helpers.DataBase;
 using TErm.Models;
 using Term3.Helpers.DataBase;
+using Term3.Models;
 
 namespace Term3.Controllers
 {
     public class IssueController : Controller
     {
-        static private ProjectModel project = new ProjectModel();
+        static ProjectModel project = new ProjectModel();
         static Clustering clustering = new Clustering();
         private Logger logger = LogManager.GetCurrentClassLogger();
         static ResourceManager resource = new ResourceManager("TErm3.Resource", Assembly.GetExecutingAssembly());
@@ -42,10 +43,14 @@ namespace Term3.Controllers
         }
 
         [HttpPost]
-        public ActionResult Issues()
+        public ActionResult Issues(string action)
         {
+            if(action == "showClasters")
+            {
+                return RedirectToAction("Clasters", "ClasterView");
+            }
             createClusters();
-            prognosis();
+            prognosisLeadTime();
             foreach (IssuesModel issue in project.issuesList)
             {
                 double estimateTime = issue.time_stats.time_estimate * 3600;
@@ -55,7 +60,7 @@ namespace Term3.Controllers
             return View(project);
         }
 
-        protected void prognosis()
+        protected void prognosisLeadTime()
         {
             if (userId != 0 && project.name != "")
             {
@@ -79,7 +84,7 @@ namespace Term3.Controllers
                                   where project.id == testProjectId
                                   select project;
             ProjectModel projectWithTestData = projectSelected.ToList()[0];
-            clustering = new Clustering(inputDataConverter.convertListToClusterObject(projectWithTestData.issuesList), 9);
+            clustering = new Clustering(inputDataConverter.convertListToClusterObject(projectWithTestData.issuesList), 11);
             clustering.initializationClusterCenters();
             clustering.clustering();
         }
