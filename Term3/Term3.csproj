@@ -239,7 +239,9 @@
     <Compile Include="Helpers\DataBase\DataBaseRequests.cs" />
     <Compile Include="Helpers\Integration\GitLabParser.cs" />
     <Compile Include="Helpers\Integration\IParsing.cs" />
+    <Compile Include="Helpers\Integration\IServerMethods.cs" />
     <Compile Include="Helpers\Integration\Requests.cs" />
+    <Compile Include="Helpers\Integration\ServerRequests.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ClasteringListModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />

@@ -7,15 +7,21 @@ namespace TErm.Models
 {
     public class UserModel
     {
-        private string name;
+        private int id;
+        private string username;
         private string token;
         private static List<ProjectModel> projects;
         private int idProjectForPrognosis;
 
-        public string Name
+        public int Id
         {
-            get { return name; }
-            set { name = value; }
+            get { return id; }
+            set { id = value; }
+        }
+        public string Username
+        {
+            get { return username; }
+            set { username = value; }
         }
         public string Token
         {

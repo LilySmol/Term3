@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="baseUrl" xml:space="preserve">
-    <value>https://gitlab.com</value>
+    <value>http://api.localhost.ru/</value>
   </data>
   <data name="dbConnectionString" xml:space="preserve">
     <value>Data Source = D:\VisualStudio\Term3\TermDB;Version = 3</value>

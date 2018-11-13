@@ -49,8 +49,8 @@ namespace Term3.Helpers.DataBase
         /// </summary>
         public static int addUserData(UserModel user)
         {
-            DataBaseRequest.insertUser(user.Name, user.Token);
-            int userId = DataBaseRequest.getUserId(user.Name, user.Token);
+            DataBaseRequest.insertUser(user.Username, user.Token);
+            int userId = DataBaseRequest.getUserId(user.Username, user.Token);
             addProjectsAndIssues(userId);
             return userId;
         }

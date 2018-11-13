@@ -1,6 +1,7 @@
 ﻿using NLog;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -39,6 +40,35 @@ namespace TErm.Helpers.Integration
                 logger.Error(e.ToString());
                 return "";
             }
+        }
+
+        /// <summary>
+        /// Выполняет POST запрос.
+        /// </summary>
+        protected string post(string url, NameValueCollection body)
+        {
+            var responseToString = "";
+            try
+            {
+                using (var client = new WebClient())
+                {
+                    var response = client.UploadValues(url, body);
+                    responseToString = Encoding.Default.GetString(response);
+                }
+            }
+            catch (WebException e)
+            {
+                Logger logger = LogManager.GetCurrentClassLogger();
+                logger.Error(e.ToString());
+                return "";
+            }
+            if (responseToString.Contains("message"))
+            {
+                Logger logger = LogManager.GetCurrentClassLogger();
+                logger.Error("Ответ со стороны сервера: " + responseToString);
+                return "";
+            }
+            return responseToString;
         }
     }
 }

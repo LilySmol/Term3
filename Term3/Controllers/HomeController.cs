@@ -12,6 +12,7 @@ using TErm.Helpers.Clustering;
 using NLog;
 using TErm.Helpers.DataBase;
 using Term3.Helpers.DataBase;
+using Term3.Helpers.Integration;
 
 namespace TErm.Controllers
 {
@@ -39,18 +40,10 @@ namespace TErm.Controllers
         {
             int userId = 0;
             string privateToken = person.Token;
-            string name = person.Name;
-            List<ProjectModel> projectList = DataBaseHelper.getProjectsList(privateToken, name);
-            if (projectList != null)
-            {
-                UserModel.Projects = projectList;
-                userId = DataBaseRequest.getUserId(person.Name, person.Token);
-                if (userId == 0) // пользователя нужно добавить в базу
-                {
-                    userId = DataBaseHelper.addUserData(person);
-                }
-            }  
-            else
+            string name = person.Username;
+            ServerRequests serverRequests = new ServerRequests();
+            userId = serverRequests.addUser(person.Token, person.Username);
+            if (userId == 0)            
             {
                 return View();
             }       

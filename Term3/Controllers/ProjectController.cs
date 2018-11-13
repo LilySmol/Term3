@@ -12,6 +12,7 @@ using TErm.Helpers.DataBase;
 using TErm.Helpers.Integration;
 using TErm.Models;
 using Term3.Helpers.DataBase;
+using Term3.Helpers.Integration;
 
 namespace Term3.Controllers
 {
@@ -42,15 +43,12 @@ namespace Term3.Controllers
 
         private void fillComboBox()
         {
-            DataTable projectsTable = new DataTable();
-            if (userId != 0) //пользователь есть в базе данных
-            {
-                projectsTable = DataBaseRequest.getProjects(userId);
-            }
+            ServerRequests serverRequests = new ServerRequests();
+            List<ProjectModel> projects = serverRequests.getProjects(userId);
             project.projectsList = new List<SelectListItem>();
-            for (int i = 0; i < projectsTable.Rows.Count; i++)
+            foreach (ProjectModel projectObject in projects)
             {
-                project.projectsList.Add(new SelectListItem { Text = projectsTable.Rows[i]["name"].ToString(), Value = projectsTable.Rows[i]["name"].ToString() });
+                project.projectsList.Add(new SelectListItem { Text = projectObject.name, Value = projectObject.name });
             }
         }
     }
