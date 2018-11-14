@@ -35,7 +35,7 @@ namespace TErm.Helpers.Clustering
         public ClusterObject convertToClusterObject(IssuesModel issues)
         {
             double[] issueArray = new double[COUNTWORDS];
-            string[] issueWordsArray = String.Concat(issues.title.ToLower(), " ", issues.description.ToLower()).Split(' ');
+            string[] issueWordsArray = String.Concat(issues.name.ToLower(), " ", issues.desc.ToLower()).Split(' ');
             for (int i = 0; i < COUNTWORDS; i++)
             {
                 if (issueWordsArray.Contains(DICTIONARY[i]))
@@ -47,7 +47,7 @@ namespace TErm.Helpers.Clustering
                     issueArray[i] = 0;
                 }
             }
-            return new ClusterObject(issues.iid.ToString(), issueArray, issues.title, issues.time_stats.total_time_spent, issues.time_stats.time_estimate);
+            return new ClusterObject(issues.iid.ToString(), issueArray, issues.name, issues.time_stats.total_time_spent, issues.time_stats.time_estimate);
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace TErm.Helpers.Clustering
             List<string> dictionary = new List<string>();
             foreach (IssuesModel issue in issuesModel)
             {
-                List<string> issueWordsList = String.Concat(issue.title.ToLower(), " ", issue.description.ToLower()).Split(' ').ToList();
+                List<string> issueWordsList = String.Concat(issue.name.ToLower(), " ", issue.desc.ToLower()).Split(' ').ToList();
                 issueWordsList.RemoveAll(l => l.Length < 4 && l != "бд");
                 totalWordsList.AddRange(issueWordsList);
             }

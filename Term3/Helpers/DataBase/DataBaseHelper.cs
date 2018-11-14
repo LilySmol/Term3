@@ -62,7 +62,7 @@ namespace Term3.Helpers.DataBase
                 DataBaseRequest.insertProject(project.id, project.description, project.name, userId);
                 foreach (IssuesModel issue in project.issuesList)
                 {
-                    DataBaseRequest.insertIssue(issue.id, issue.iid, issue.title, issue.description, project.id, issue.time_stats.total_time_spent, issue.time_stats.time_estimate);
+                    DataBaseRequest.insertIssue(issue.id, issue.iid, issue.name, issue.desc, project.id, issue.time_stats.total_time_spent, issue.time_stats.time_estimate);
                 }
             }            
         }

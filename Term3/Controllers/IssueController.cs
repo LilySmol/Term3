@@ -11,6 +11,7 @@ using TErm.Helpers.Clustering;
 using TErm.Helpers.DataBase;
 using TErm.Models;
 using Term3.Helpers.DataBase;
+using Term3.Helpers.Integration;
 using Term3.Models;
 
 namespace Term3.Controllers
@@ -26,19 +27,12 @@ namespace Term3.Controllers
         // GET: Issue
         public ActionResult Issues(int userID, string projectTitle)
         {
-            DataTable issuesTable = DataBaseRequest.getIssues(userID, projectTitle);
-            project.issuesList = new List<IssuesModel>();
-            project.name = projectTitle;
             userId = userID;
-            double estimateTime = 0;
-            double spentTime = 0;
-            foreach (DataRow row in issuesTable.Rows)
-            {
-                spentTime = Convert.ToDouble(row["spentTime"]) / 3600;
-                estimateTime = Convert.ToDouble(row["estimateTime"]) / 3600;
-                project.issuesList.Add(new IssuesModel(Convert.ToInt32(row["issueID"]), row["title"].ToString(), row["description"].ToString(), spentTime, estimateTime));
-            }
-            project.projectTime = DataBaseRequest.getProjectTime(project.name, userId);
+            project.name = projectTitle;
+            ServerRequests serverRequests = new ServerRequests();
+            project.issuesList = serverRequests.getIssues(userId, projectTitle);
+            //исправить получение оценочного времени
+            project.projectTime = 0;
             return View(project);
         }
 
@@ -70,7 +64,7 @@ namespace Term3.Controllers
                     Cluster clusterCenter = clustering.ClusterList[clustering.getNumberNearestCenter(inputDataConverter.convertToClusterObject(issue))];
                     issue.time_stats.time_estimate = clusterCenter.NearestObject.SpentTime / 3600;
                     project.projectTime += issue.time_stats.time_estimate;
-                    logger.Info("Задача: " + issue.title + " Oтносится к кластеру: " + clusterCenter.NearestObject.Title);
+                    logger.Info("Задача: " + issue.name + " Oтносится к кластеру: " + clusterCenter.NearestObject.Title);
                 }                
             }
         }

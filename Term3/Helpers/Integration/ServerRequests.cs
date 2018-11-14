@@ -31,7 +31,7 @@ namespace Term3.Helpers.Integration
             body["token"] = token;
             body["username"] = userName;
             string response = post(baseUrl + "api/add-user", body);
-            if (response.Equals(""))
+            if (response.Equals("") || response.Contains("message"))
             {
                 return 0;
             }
@@ -48,12 +48,30 @@ namespace Term3.Helpers.Integration
             var body = new NameValueCollection();
             body["id"] = userId.ToString();
             string response = post(baseUrl + "api/get-projects", body);
-            if (response.Equals(""))
+            if (response.Equals("") || response.Contains("message"))
             {
                 return null;
             }
             List<ProjectModel> projectsList = JsonConvert.DeserializeObject<List<ProjectModel>>(response);
             return projectsList;
+        }
+
+        /// <summary>
+        /// Получить список задач проекта по id пользователя и названию проекта.
+        /// </summary>
+        public List<IssuesModel> getIssues(int userId, string projectName)
+        {
+            baseUrl = resource.GetString("baseUrl");
+            var body = new NameValueCollection();
+            body["id"] = userId.ToString();
+            body["project_name"] = projectName;
+            string response = post(baseUrl + "api/get-project-issues", body);
+            if (response.Equals("") || response.Contains("message"))
+            {
+                return null;
+            }
+            List<IssuesModel> issuesList = JsonConvert.DeserializeObject<List<IssuesModel>>(response);
+            return issuesList;
         }
     }
 }

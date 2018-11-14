@@ -53,7 +53,7 @@ namespace TErm.Helpers.Integration
                 using (var client = new WebClient())
                 {
                     var response = client.UploadValues(url, body);
-                    responseToString = Encoding.Default.GetString(response);
+                    responseToString = Encoding.UTF8.GetString(response);
                 }
             }
             catch (WebException e)
