@@ -7,10 +7,11 @@ namespace TErm.Helpers.Clustering
 {
     public class Clustering
     {
-        private List<ClusterCenter> centersList;
-        private List<ClusterObject> objectsList;        
-        private int countClusters;
-        private List<Cluster> clusterList;
+        private List<ClusterCenter> centersList;  //список центров кластеров выход
+        private List<ClusterObject> objectsList;  //список задач вход      
+        private int countClusters;  //вход
+        private List<Cluster> clusterList;  //выход
+
         public List<Cluster> ClusterList
         {
             get { return clusterList; }
@@ -30,6 +31,7 @@ namespace TErm.Helpers.Clustering
             clusterList = new List<Cluster>();
         }
 
+//ЭТО ГОВНО НЕ РАБОТАЕТ!
         /// <summary>
         /// Осуществляется начальная инициализация списка центров кластеров.
         /// </summary>
@@ -139,8 +141,8 @@ namespace TErm.Helpers.Clustering
                             List<ClusterObject> clusterObjects = getClusterObjectList(clusterCenter);
                             if (clusterObjects.Count != 0)
                             {
-                                ClusterObject clusterObject = getNearestObject(clusterCenter, clusterObjects);
-                                clusterList.Add(new Cluster(clusterCenter, clusterObjects, clusterObject));
+                                ClusterObject centerNearestObject = getNearestObject(clusterCenter, clusterObjects);
+                                clusterList.Add(new Cluster(clusterCenter, clusterObjects, centerNearestObject));
                             }                            
                         }
                     }

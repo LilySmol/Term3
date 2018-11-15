@@ -120,6 +120,9 @@
   <data name="baseUrl" xml:space="preserve">
     <value>http://api.localhost.ru/</value>
   </data>
+  <data name="clastersCount" xml:space="preserve">
+    <value>9</value>
+  </data>
   <data name="dbConnectionString" xml:space="preserve">
     <value>Data Source = D:\VisualStudio\Term3\TermDB;Version = 3</value>
   </data>
@@ -135,8 +138,8 @@
   <data name="dbUserId" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="testProjectId" xml:space="preserve">
-    <value>5831163</value>
+  <data name="testProjectName" xml:space="preserve">
+    <value>testProject</value>
   </data>
   <data name="testProjectToken" xml:space="preserve">
     <value>uM7eAtgdabvgN7avNxyu</value>

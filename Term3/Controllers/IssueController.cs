@@ -47,10 +47,10 @@ namespace Term3.Controllers
             prognosisLeadTime();
             foreach (IssuesModel issue in project.issuesList)
             {
-                double estimateTime = issue.time_stats.time_estimate * 3600;
+                double estimateTime = issue.estimate_time * 3600;
                 DataBaseRequest.updateEstimateTime(issue.id, estimateTime);
             }
-            DataBaseRequest.updateProjectTime(project.name, project.projectTime, userId);
+            //DataBaseRequest.updateProjectTime(project.name, project.projectTime, userId);
             return View(project);
         }
 
@@ -59,11 +59,13 @@ namespace Term3.Controllers
             if (userId != 0 && project.name != "")
             {
                 InputDataConverter inputDataConverter = new InputDataConverter();
+                int nearestCenter = 0;
                 foreach (IssuesModel issue in project.issuesList)
                 {
+                    nearestCenter = clustering.getNumberNearestCenter(inputDataConverter.convertToClusterObject(issue));
                     Cluster clusterCenter = clustering.ClusterList[clustering.getNumberNearestCenter(inputDataConverter.convertToClusterObject(issue))];
-                    issue.time_stats.time_estimate = clusterCenter.NearestObject.SpentTime / 3600;
-                    project.projectTime += issue.time_stats.time_estimate;
+                    issue.estimate_time = clusterCenter.NearestObject.SpentTime / 3600;
+                    project.projectTime += issue.estimate_time;
                     logger.Info("Задача: " + issue.name + " Oтносится к кластеру: " + clusterCenter.NearestObject.Title);
                 }                
             }
@@ -71,14 +73,12 @@ namespace Term3.Controllers
 
         protected void createClusters()
         {
-            int testProjectId = Convert.ToInt32(resource.GetString("testProjectId"));
-            List<ProjectModel> projectList = DataBaseHelper.getProjectsList(resource.GetString("testProjectToken"), resource.GetString("testProjectUser"));
+            string testProjectName = resource.GetString("testProjectName");
+            int clastersCount = Convert.ToInt32(resource.GetString("clastersCount"));
+            ServerRequests serverRequest = new ServerRequests();
+            List<IssuesModel> issuesList = serverRequest.getIssues(userId, testProjectName);
             InputDataConverter inputDataConverter = new InputDataConverter();
-            var projectSelected = from project in projectList
-                                  where project.id == testProjectId
-                                  select project;
-            ProjectModel projectWithTestData = projectSelected.ToList()[0];
-            clustering = new Clustering(inputDataConverter.convertListToClusterObject(projectWithTestData.issuesList), 11);
+            clustering = new Clustering(inputDataConverter.convertListToClusterObject(issuesList), clastersCount);
             clustering.initializationClusterCenters();
             clustering.clustering();
         }

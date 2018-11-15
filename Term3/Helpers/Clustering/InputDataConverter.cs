@@ -47,7 +47,7 @@ namespace TErm.Helpers.Clustering
                     issueArray[i] = 0;
                 }
             }
-            return new ClusterObject(issues.iid.ToString(), issueArray, issues.name, issues.time_stats.total_time_spent, issues.time_stats.time_estimate);
+            return new ClusterObject(issues.issue_id.ToString(), issueArray, issues.name, issues.spent_time, issues.estimate_time);
         }
 
         /// <summary>
