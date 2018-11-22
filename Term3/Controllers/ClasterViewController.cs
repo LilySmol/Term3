@@ -4,18 +4,45 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TErm.Models;
+using Term3.Helpers.Integration;
 
 namespace Term3.Controllers
 {
     public class ClasterViewController : Controller
     {
         // GET: ClasterView
-        public ActionResult Clasters()
+        public ActionResult Clasters(int userID, string projectName)
         {
             List<ClasteringListModel> clastersList = new List<ClasteringListModel>();
-            clastersList.Add(new ClasteringListModel("Авторизация по email", 14, new List<string>() { "Авторизация по логину и паролю", "Авторизация по токену", "Авторизация по номеру телефона" }));
-            clastersList.Add(new ClasteringListModel("Добавление в БД пользователя", 10, new List<string>() { "Добавление в БД пользователя", "Добавление в БД покупок", "Добавление модератора" }));
-            clastersList.Add(new ClasteringListModel("Фильтр по покупкам", 11, new List<string>() { "Редактирование списка покупок", "Добавить магазин на карту", "Добавить настройки системы", "Настройка темы приложения" }));
+            ServerRequests serverRequests = new ServerRequests();
+            List<IssuesModel> issuesList = serverRequests.getIssues(userID, projectName);
+            bool clasterIsExist = false;
+            foreach (IssuesModel issue in issuesList)
+            {
+                if (clastersList.Count == 0)
+                {
+                    List<string> issuesInClaster = new List<string>() { issue.name};
+                    clastersList.Add(new ClasteringListModel(issue.cluster_name, issue.estimate_time, issuesInClaster));
+                }
+                else
+                {
+                    foreach (ClasteringListModel claster in clastersList)
+                    {
+                        if (claster.clasterName == issue.cluster_name)
+                        {
+                            claster.taskList.Add(issue.name);
+                            clasterIsExist = true;
+                            break;
+                        }
+                    }
+                    if (!clasterIsExist)
+                    {
+                        List<string> issuesInClaster = new List<string>() { issue.name };
+                        clastersList.Add(new ClasteringListModel(issue.cluster_name, issue.estimate_time, issuesInClaster));                     
+                    }
+                    clasterIsExist = false;
+                }
+            }
             return View(clastersList);
         }
     }

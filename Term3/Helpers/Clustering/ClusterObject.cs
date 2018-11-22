@@ -10,8 +10,8 @@ namespace TErm.Helpers.Clustering
         private string objectName;
         private double[] attributeArray;
         private string title;
-        private double spentTime;
-        private double estimateTime;
+        private int spentTime;
+        private int estimateTime;
 
         public string ObjectName
         {
@@ -28,12 +28,12 @@ namespace TErm.Helpers.Clustering
             get { return title; }
             set { title = value; }
         }
-        public double SpentTime
+        public int SpentTime
         {
             get { return spentTime; }
             set { spentTime = value; }
         }
-        public double EstimateTime
+        public int EstimateTime
         {
             get { return estimateTime; }
             set { estimateTime = value; }
@@ -41,7 +41,7 @@ namespace TErm.Helpers.Clustering
 
         public ClusterObject() { }
 
-        public ClusterObject(string objectName, double[] attributeArray, string title, double spentTime, double estimateTime)
+        public ClusterObject(string objectName, double[] attributeArray, string title, int spentTime, int estimateTime)
         {
             this.objectName = objectName;
             this.attributeArray = attributeArray;

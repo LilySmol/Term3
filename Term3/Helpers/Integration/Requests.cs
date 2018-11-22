@@ -5,12 +5,13 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Web;
 
 namespace TErm.Helpers.Integration
 {
-    public abstract class Requests
+    public  class Requests
     {
         /// <summary>
         /// Выполняет GET запрос по privateToken и url.
@@ -61,6 +62,35 @@ namespace TErm.Helpers.Integration
                 Logger logger = LogManager.GetCurrentClassLogger();
                 logger.Error(e.ToString());
                 return "";
+            }
+            if (responseToString.Contains("message"))
+            {
+                Logger logger = LogManager.GetCurrentClassLogger();
+                logger.Error("Ответ со стороны сервера: " + responseToString);
+                return "";
+            }
+            return responseToString;
+        }
+
+        /// <summary>
+        /// Выполняет POST запрос.
+        /// </summary>
+        protected string post(string url, string bodyJson)
+        {
+            var responseToString = "";
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {              
+                streamWriter.Write(bodyJson);
+                streamWriter.Flush();
+                streamWriter.Close();
+            }
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                responseToString = streamReader.ReadToEnd();
             }
             if (responseToString.Contains("message"))
             {

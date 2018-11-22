@@ -12,7 +12,7 @@
         string type = "cluster block" + i;
         <div class="col-sm-3 block-name">
             <div>@claster.clasterName</div>
-            <div>Часы: @claster.clasterHours</div>
+            <div>@(claster.clasterEstimateTime / 3600) часов</div>
         </div>
         <div class="col-sm-9">
             <div class="@type">
@@ -53,7 +53,7 @@
     }
 
     .block6 {
-        border-left-color: aquamarine;
+        border-left-color: coral;
     }
 
     .block7 {
@@ -71,8 +71,8 @@
     .cluster {
         border-left-width: 2px;
         border-left-style: solid;
-        padding-top: 15px;
-        padding-bottom: 15px;
+        padding-top: 50px;
+        padding-bottom: 50px;
     }
 
     .block-name {
@@ -128,7 +128,7 @@
     }
 
     .block6 .point {
-        background-color: aquamarine;
+        background-color: coral;
     }
 
     .block7 .point {

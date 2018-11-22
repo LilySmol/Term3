@@ -27,8 +27,9 @@ namespace Term3.Controllers
         // GET: Issue
         public ActionResult Issues(int userID, string projectTitle)
         {
+            //уже обновлено
             userId = userID;
-            project.name = projectTitle;
+            project.name = projectTitle;          
             ServerRequests serverRequests = new ServerRequests();
             project.issuesList = serverRequests.getIssues(userId, projectTitle);
             //исправить получение оценочного времени
@@ -41,20 +42,19 @@ namespace Term3.Controllers
         {
             if(action == "showClasters")
             {
-                return RedirectToAction("Clasters", "ClasterView");
+                return RedirectToAction("Clasters", "ClasterView", new { userID = userId, projectName  = project.name});
             }
             createClusters();
-            prognosisLeadTime();
-            foreach (IssuesModel issue in project.issuesList)
-            {
-                double estimateTime = issue.estimate_time * 3600;
-                DataBaseRequest.updateEstimateTime(issue.id, estimateTime);
-            }
-            //DataBaseRequest.updateProjectTime(project.name, project.projectTime, userId);
+            prognosisIssuesAndProjectTime();
+
+            ServerRequests serverRequest = new ServerRequests();
+            serverRequest.updateIssues(userId, project.issuesList);
+            serverRequest.updateProjectTime(userId, project.id, project.projectTime);
+
             return View(project);
         }
 
-        protected void prognosisLeadTime()
+        protected void prognosisIssuesAndProjectTime()
         {
             if (userId != 0 && project.name != "")
             {
@@ -64,7 +64,8 @@ namespace Term3.Controllers
                 {
                     nearestCenter = clustering.getNumberNearestCenter(inputDataConverter.convertToClusterObject(issue));
                     Cluster clusterCenter = clustering.ClusterList[clustering.getNumberNearestCenter(inputDataConverter.convertToClusterObject(issue))];
-                    issue.estimate_time = clusterCenter.NearestObject.SpentTime / 3600;
+                    issue.estimate_time = clusterCenter.NearestObject.SpentTime;
+                    issue.cluster_name = clusterCenter.NearestObject.Title;
                     project.projectTime += issue.estimate_time;
                     logger.Info("Задача: " + issue.name + " Oтносится к кластеру: " + clusterCenter.NearestObject.Title);
                 }                

@@ -26,14 +26,14 @@
                 <tr>
                     <td>@issue.name</td>
                     <td>@issue.desc</td>
-                    <td>@issue.estimate_time</td>
-                    <td>@issue.spent_time</td>
+                    <td>@(issue.estimate_time / 3600)</td>
+                    <td>@(issue.spent_time / 3600)</td>
                 </tr>
             }
             <tr>
                 <td>Общее время проекта</td>
                 <td></td>
-                <td>@Model.projectTime</td>
+                <td>@(Model.projectTime / 3600)</td>
                 <td></td>
             </tr>
         </table>

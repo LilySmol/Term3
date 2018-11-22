@@ -57,6 +57,22 @@ namespace Term3.Helpers.Integration
         }
 
         /// <summary>
+        /// Обновить список проектов пользователя по id.
+        /// </summary>
+        public bool updateProjects(int userId)
+        {
+            baseUrl = resource.GetString("baseUrl");
+            var body = new NameValueCollection();
+            body["id"] = userId.ToString();
+            string response = post(baseUrl + "api/update-user-projects", body);
+            if (response.Equals(""))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
         /// Получить список задач проекта по id пользователя и названию проекта.
         /// </summary>
         public List<IssuesModel> getIssues(int userId, string projectName)
@@ -66,12 +82,57 @@ namespace Term3.Helpers.Integration
             body["id"] = userId.ToString();
             body["project_name"] = projectName;
             string response = post(baseUrl + "api/get-project-issues", body);
-            if (response.Equals("") || response.Contains("message"))
+            if (response.Equals(""))
             {
                 return null;
             }
             List<IssuesModel> issuesList = JsonConvert.DeserializeObject<List<IssuesModel>>(response);
             return issuesList;
+        }
+
+        /// <summary>
+        /// Обновить оценочное время и кластер в списке задач проекта по id пользователя
+        /// </summary>
+        public bool updateIssues(int userId, List<IssuesModel> issuesList)
+        {
+            baseUrl = resource.GetString("baseUrl");
+            string json = "{\"user_id\":" + userId + ", \"issues\": [";
+            for (int i = 0; i < issuesList.Count; i++)
+            {
+                json += "{\"id\":" + issuesList[i].id + ","
+                    + "\"project_id\":" + issuesList[i].project_id + ","
+                    + "\"cluster_name\":\"" + issuesList[i].cluster_name + "\","
+                    + "\"estimate_time\":" + issuesList[i].estimate_time + "}";
+                if (i != (issuesList.Count - 1))
+                {
+                    json += ",";
+                }
+            }
+            json += "]}";
+            string response = post(baseUrl + "api/update-issues", json);
+            if (response.Equals(""))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Обновить оценочное время проекта по id пользователя и id проекта
+        /// </summary>
+        public bool updateProjectTime(int userId, int projectId, int estimateTime)
+        {
+            baseUrl = resource.GetString("baseUrl");
+            var body = new NameValueCollection();
+            body["id"] = projectId.ToString();
+            body["user_id"] = projectId.ToString();
+            body["estimate_time"] = estimateTime.ToString();
+            string response = post(baseUrl + "api/update-project", body);
+            if (response.Equals(""))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

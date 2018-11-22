@@ -34,9 +34,9 @@ namespace Term3.Controllers
         { 
             if (projectModel.name == null) //обновить проекты и задачи пользователя
             {
-                DataBaseHelper.update(userId);
-                fillComboBox();
-                return View(project);
+                //DataBaseHelper.update(userId);
+                //fillComboBox();
+                //return View(project);
             }      
             return RedirectToAction("Issues", "Issue", new { userID = userId, projectTitle = projectModel.name });
         }

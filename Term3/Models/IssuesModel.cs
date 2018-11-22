@@ -12,11 +12,11 @@ namespace TErm.Models
         public long project_id { get; set; }
         public string name { get; set; }
         public string desc { get; set; }
-        public double spent_time { get; set; }
-        public double estimate_time { get; set; }
+        public int spent_time { get; set; }
+        public int estimate_time { get; set; }
         public string cluster_name { get; set; }
 
-        public IssuesModel(int id, string title, string description, double spendTime, double estimateTime)
+        public IssuesModel(int id, string title, string description, int spendTime, int estimateTime)
         {
             this.id = id;
             this.name = title;

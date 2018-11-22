@@ -30,24 +30,17 @@ namespace TErm.Helpers.Clustering
             centersList = new List<ClusterCenter>();
             clusterList = new List<Cluster>();
         }
-
-//ЭТО ГОВНО НЕ РАБОТАЕТ!
+        
         /// <summary>
         /// Осуществляется начальная инициализация списка центров кластеров.
         /// </summary>
         public void initializationClusterCenters()
         {
-            int step = objectsList.Count / countClusters;
-            int numberCenterCluster = step;
-            for (int i = 0; i < objectsList.Count; i++)
+            for (int i = 0; i < countClusters; i++)
             {
-                if (i == numberCenterCluster)
-                {
                     double[] clasterObjectArray = new double[objectsList[i].AttributeArray.Count()];
                     Array.Copy(objectsList[i].AttributeArray, clasterObjectArray, objectsList[i].AttributeArray.Count());
-                    centersList.Add(new ClusterCenter("center" + (i + 1), clasterObjectArray));
-                    numberCenterCluster += step;
-                }                
+                    centersList.Add(new ClusterCenter("center" + (i + 1), clasterObjectArray));                              
             }
         }
 
@@ -178,7 +171,7 @@ namespace TErm.Helpers.Clustering
             for (int i = 0; i < clusterObjects.Count; i++)
             {
                 newDistance = getDistance(clusterObjects[i], clusterCenter);
-                if (newDistance < distance)
+                if ((newDistance < distance) || (newDistance == 0))
                 {
                     distance = newDistance;
                     clusterObject = clusterObjects[i];
