@@ -11,6 +11,10 @@ namespace TErm.Helpers.Clustering
         private static List<string> DICTIONARY = new List<string>();
         private static int COUNTWORDS = 0;
 
+        private List<string> adjektivEnde = new List<string> { "ее","ие","ые","ое","ими","ыми",
+            "ей","ий","ый","ой","ем","им","ым","ом","его","ого","ему","ому","их","ых","ую",
+            "юю","ая","яя","ою","ею"};
+
         /// <summary>
         /// Преобразует объекты списка IssuesModel в список ClusterObject
         /// </summary>
@@ -59,8 +63,20 @@ namespace TErm.Helpers.Clustering
             List<string> dictionary = new List<string>();
             foreach (IssuesModel issue in issuesModel)
             {
-                List<string> issueWordsList = String.Concat(issue.name.ToLower(), " ", issue.desc.ToLower()).Split(' ').ToList();
-                issueWordsList.RemoveAll(l => l.Length < 4 && l != "бд");
+                List<string> issueWordsList = String
+                    .Concat(issue.name.ToLower(), " ", issue.desc.ToLower())
+                    .Replace("(", string.Empty)
+                    .Replace(")", string.Empty)
+                    .Replace(":", string.Empty)
+                    .Replace(",", string.Empty)
+                    .Replace(".", string.Empty)
+                    .Split(' ')
+                    .ToList();    
+                issueWordsList.RemoveAll(l => l.Length < 4 && l != "бд"); //удаление предлогов
+                foreach (string ende in adjektivEnde) //удаление прилагательных
+                {
+                    issueWordsList.RemoveAll(l => l.EndsWith(ende));
+                }
                 totalWordsList.AddRange(issueWordsList);
             }
             foreach (string word in totalWordsList)
