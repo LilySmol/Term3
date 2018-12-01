@@ -1,18 +1,12 @@
 ﻿using NLog;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Reflection;
 using System.Resources;
-using System.Web;
 using System.Web.Mvc;
 using TErm.Helpers.Clustering;
-using TErm.Helpers.DataBase;
 using TErm.Models;
-using Term3.Helpers.DataBase;
 using Term3.Helpers.Integration;
-using Term3.Models;
 
 namespace Term3.Controllers
 {
@@ -31,9 +25,16 @@ namespace Term3.Controllers
             userId = userID;
             project.name = projectTitle;          
             ServerRequests serverRequests = new ServerRequests();
+            serverRequests.baseUrl = resource.GetString("baseUrl");
             project.issuesList = serverRequests.getIssues(userId, projectTitle);
             //исправить получение оценочного времени
-            project.projectTime = 0;
+            List<ProjectModel> projects = serverRequests.getProjects(userId);
+            project.estimate_time = projects
+                .Find(project => project.name == projectTitle)
+                .estimate_time;
+            project.id = projects
+                .Find(project => project.name == projectTitle)
+                .id;
             return View(project);
         }
 
@@ -48,8 +49,9 @@ namespace Term3.Controllers
             prognosisIssuesAndProjectTime();
 
             ServerRequests serverRequest = new ServerRequests();
+            serverRequest.baseUrl = resource.GetString("baseUrl");
             serverRequest.updateIssues(userId, project.issuesList);
-            serverRequest.updateProjectTime(userId, project.id, project.projectTime);
+            serverRequest.updateProjectTime(userId, project.id, project.estimate_time);
 
             return View(project);
         }
@@ -60,13 +62,15 @@ namespace Term3.Controllers
             {
                 InputDataConverter inputDataConverter = new InputDataConverter();
                 int nearestCenter = 0;
+                int projectEstimateTime = 0;
                 foreach (IssuesModel issue in project.issuesList)
                 {
                     nearestCenter = clustering.getNumberNearestCenter(inputDataConverter.convertToClusterObject(issue));
                     Cluster clusterCenter = clustering.ClusterList[clustering.getNumberNearestCenter(inputDataConverter.convertToClusterObject(issue))];
                     issue.estimate_time = clusterCenter.NearestObject.SpentTime;
                     issue.cluster_name = clusterCenter.NearestObject.Title;
-                    project.projectTime += issue.estimate_time;
+                    projectEstimateTime += issue.estimate_time;
+                    project.estimate_time = projectEstimateTime;
                     logger.Info("Задача: " + issue.name + " Oтносится к кластеру: " + clusterCenter.NearestObject.Title);
                 }                
             }
@@ -77,6 +81,7 @@ namespace Term3.Controllers
             string testProjectName = resource.GetString("testProjectName");
             int clastersCount = Convert.ToInt32(resource.GetString("clastersCount"));
             ServerRequests serverRequest = new ServerRequests();
+            serverRequest.baseUrl = resource.GetString("baseUrl");
             List<IssuesModel> issuesList = serverRequest.getIssues(userId, testProjectName);
             InputDataConverter inputDataConverter = new InputDataConverter();
             clustering = new Clustering(inputDataConverter.convertListToClusterObject(issuesList), clastersCount);

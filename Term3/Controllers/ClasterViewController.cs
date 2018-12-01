@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Resources;
 using System.Web;
 using System.Web.Mvc;
 using TErm.Models;
@@ -10,11 +12,14 @@ namespace Term3.Controllers
 {
     public class ClasterViewController : Controller
     {
+        static ResourceManager resource = new ResourceManager("TErm3.Resource", Assembly.GetExecutingAssembly());
+
         // GET: ClasterView
         public ActionResult Clasters(int userID, string projectName)
         {
             List<ClasteringListModel> clastersList = new List<ClasteringListModel>();
             ServerRequests serverRequests = new ServerRequests();
+            serverRequests.baseUrl = resource.GetString("baseUrl");
             List<IssuesModel> issuesList = serverRequests.getIssues(userID, projectName);
             bool clasterIsExist = false;
             foreach (IssuesModel issue in issuesList)

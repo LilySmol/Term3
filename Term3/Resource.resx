@@ -123,21 +123,6 @@
   <data name="clastersCount" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="dbConnectionString" xml:space="preserve">
-    <value>Data Source = D:\VisualStudio\Term3\TermDB;Version = 3</value>
-  </data>
-  <data name="dbInsertToken" xml:space="preserve">
-    <value>token</value>
-  </data>
-  <data name="dbInsertUser" xml:space="preserve">
-    <value>Lily</value>
-  </data>
-  <data name="dbProjectId" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="dbUserId" xml:space="preserve">
-    <value>8</value>
-  </data>
   <data name="testProjectName" xml:space="preserve">
     <value>testProject</value>
   </data>

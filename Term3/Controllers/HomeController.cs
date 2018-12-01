@@ -1,23 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using TErm.Models;
 using System.Resources;
 using System.Reflection;
-using TErm.Helpers.Integration;
-using TErm.Helpers.Clustering;
-using NLog;
-using TErm.Helpers.DataBase;
-using Term3.Helpers.DataBase;
 using Term3.Helpers.Integration;
 
 namespace TErm.Controllers
 {
     public class HomeController : Controller
-    {       
+    {
+        static ResourceManager resource = new ResourceManager("TErm3.Resource", Assembly.GetExecutingAssembly());
+
         public ActionResult Index()
         {
             return View();
@@ -38,11 +30,11 @@ namespace TErm.Controllers
         [HttpPost]
         public ActionResult Index(UserModel person)
         {
-            int userId = 0;
             string privateToken = person.Token;
             string name = person.Username;
             ServerRequests serverRequests = new ServerRequests();
-            userId = serverRequests.addUser(person.Token, person.Username);
+            serverRequests.baseUrl = resource.GetString("baseUrl");
+            int userId = serverRequests.addUser(privateToken, name);
             if (userId == 0)            
             {
                 return View();
